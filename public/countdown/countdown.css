@@ -62,6 +62,24 @@ h1 {
   font-weight: 700;
 }
 
+#photo-upload-section {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.75rem; /* Tiny font size */
+}
+
+#submit-link {
+  color: gray;
+  text-decoration: none;
+  transition-duration: 500ms;
+}
+
+#submit-link:hover {
+  color: lightgoldenrodyellow;
+  text-decoration: underline;
+}
+
 /* Add fade-in keyframes */
 @keyframes fadeIn {
   0% {
