@@ -1,24 +1,33 @@
 let bgIndex = 0;
 const preloadedImages = [];
 
-fetch("./data.json")
+fetch("https://files.hutotpn.webcr.top/holidays-project/christmas-photos.json")
   .then((response) => response.json())
   .then((data) => {
     // Preload images
-    data.forEach((url, index) => {
+    data.forEach((item, index) => {
       const img = new Image();
       img.onload = () =>
-        console.log(`Image ${index + 1} loaded successfully: ${url}`);
+        console.log(`Image ${index + 1} loaded successfully: ${item.url}`);
       img.onerror = () =>
-        console.error(`Error loading image ${index + 1}: ${url}`);
-      img.src = url;
-      preloadedImages[index] = img;
+        console.error(`Error loading image ${index + 1}: ${item.url}`);
+      img.src = item.url;
+      preloadedImages[index] = {
+        src: img.src,
+        photographer: item.photographer,
+        creditLink: item.creditLink,
+      };
     });
 
     function changeBackground() {
       if (preloadedImages[bgIndex]?.src) {
         // Apply the preloaded image source directly without wrapping in `url()`
         document.body.style.backgroundImage = `url(${preloadedImages[bgIndex].src})`;
+
+        // Update the photo credit
+        const photoCredit = document.getElementById("photographer");
+        photoCredit.innerHTML = preloadedImages[bgIndex].photographer;
+        photoCredit.href = preloadedImages[bgIndex].creditLink;
       } else {
         console.error("Background image not loaded yet or missing.");
       }
