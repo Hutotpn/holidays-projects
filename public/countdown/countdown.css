@@ -7,6 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -16,6 +17,7 @@ body {
   position: relative;
   opacity: 0; /* Initially hidden */
   animation: fadeIn 2s forwards; /* Apply fade-in animation */
+  overflow: hidden; /* Hide the overflow */
 }
 
 body::after {
